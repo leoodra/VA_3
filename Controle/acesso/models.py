@@ -1,5 +1,6 @@
 #coding:utf-8
 from django.db import models
+from django.core.exceptions import ValidationError
 
 SEXO = [
 	('F','Feminino'),
@@ -45,8 +46,19 @@ class Acesso(models.Model):
 	Status = models.BooleanField('Acessando',default = False)
 	Statuso = models.BooleanField('Saiu',default = False)	
 
+	#def save(self, *args, **kwargs):
+	#	q = Acesso.objects.filter(Status=True)
+	#	if q:
+	#	    raise ValidationError("Pessoa ja esta acessando algum local")
+	
+	#	super(Acesso,self).save(*args, **kwargs)
+	
+	class Meta:
+		unique_together = ("Status","Pessoa")
+
+
 	def __unicode__(self):
-		return "%s - %s" % (self.Hora_EntradaAcess,self.Hora_SaidaAcesso)
+		return " %s - %s - %s" % (self.Pessoa.Nome,self.Hora_EntradaAcess,self.Hora_SaidaAcesso)
 
 		
 
