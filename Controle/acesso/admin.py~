@@ -6,8 +6,12 @@ from models import Acesso
 
 # Register your models here.
 
+class AcessoAdmin(admin.ModelAdmin):
+	list_display = ['Pessoa','Local','Hora_EntradaAcess','Hora_SaidaAcesso','Status','Statuso']
+	
+
 admin.site.register(Pessoa)
 admin.site.register(Local)
-admin.site.register(Acesso)
+admin.site.register(Acesso,AcessoAdmin)
 
 

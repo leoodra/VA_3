@@ -38,11 +38,13 @@ class Local(models.Model):
 
 
 class Acesso(models.Model):
-	Nomep = models.ForeignKey(Pessoa,verbose_name="Pessoa",null=True)	
-	Nomep = models.ForeignKey(Local,verbose_name="Local", null=True)
+	Pessoa = models.ForeignKey(Pessoa,verbose_name="Pessoa",null=True)	
+	Local = models.ForeignKey(Local,verbose_name="Local", null=True)
 	Hora_EntradaAcess = models.TimeField('Hora de Entrada',auto_now=True)
 	Hora_SaidaAcesso = models.TimeField('Hora da Saída')
-	
+	Status = models.BooleanField('Acessando',default = False)
+	Statuso = models.BooleanField('Saiu',default = False)	
+
 	def __unicode__(self):
 		return "%s - %s" % (self.Hora_EntradaAcess,self.Hora_SaidaAcesso)
 
